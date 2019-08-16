@@ -1,0 +1,20 @@
+[Unit]
+Description=[Program] Dedicated Server
+Wants=network-online.target
+After=syslog.target network.target nss-lookup.target network-online.target
+
+[Service]
+ExecStart=/path/to/directory
+WorkingDirectory=/path/to/working/directory
+LimitNOFILE=100000
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s INT $MAINPID
+User=user
+Group=user
+OOMScoreAdjust=1000
+WatchdogSec=86400
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

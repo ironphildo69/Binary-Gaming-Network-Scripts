@@ -1,0 +1,20 @@
+
+[Unit]
+Description=Gameserver Dedicated Server
+Wants=network-online.target
+After=syslog.target network.target nss-lookup.target network-online.target
+
+[Service]
+ExecStart=/home/gameserver/start_gameserver.sh
+WorkingDirectory=/home/gameserver/
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s INT $MAINPID
+User=gameserver
+Group=gameserver
+OOMScoreAdjust=1000
+
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

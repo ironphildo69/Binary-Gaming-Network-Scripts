@@ -1,0 +1,18 @@
+[Unit]
+Description=Minecraft Forge dedicated server
+Wants=network-online.target
+After=syslog.target network.target nss-lookup.target network-online.target
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/screen -d -m -S minecraft /home/minecraft/server/start.sh
+LimitNOFILE=100000
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s INT $MAINPID
+User=minecraft
+Group=minecraft
+OOMScoreAdjust=1000
+WorkingDirectory=/home/minecraft/server
+
+[Install]
+WantedBy=multi-user.target

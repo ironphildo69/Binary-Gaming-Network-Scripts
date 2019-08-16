@@ -1,0 +1,10 @@
+starbound ALL = NOPASSWD: /bin/systemctl stop service-name.service
+starbound ALL = NOPASSWD: /bin/systemctl start service-name.service
+starbound ALL = NOPASSWD: /bin/systemctl enable service-name.service
+starbound ALL = NOPASSWD: /bin/systemctl disable service-name.service
+starbound ALL = NOPASSWD: /bin/systemctl status service-name.service
+
+starbound ALL = NOPASSWD: /usr/bin/apt-get update
+starbound ALL = NOPASSWD: /usr/bin/apt-get dist-upgrade -y
+starbound ALL = NOPASSWD: /usr/bin/apt-get autoremove -y 
+starbound ALL = NOPASSWD: /sbin/reboot
